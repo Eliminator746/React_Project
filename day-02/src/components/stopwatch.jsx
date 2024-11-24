@@ -1,32 +1,49 @@
-import { useState } from "react"
-import Body from "./Body";
+import { useEffect, useState } from "react"
+import { FormatTime } from "./Timer"
+import ControlButton from "./ControlButtons";
 
 export default function StopWatch() {
     const [timer, setTimer] = useState(0);
+    const [isActive, setIsActive] = useState(false)
+    const [isPaused, setIsPaused] = useState(true)
 
+    useEffect(()=>{
+        let value;
+        if(isActive && !isPaused){
+             value=setInterval(()=>{setTimer(c=>c+1)},100)
+        }
+       
 
-//When clicked start btn, another page reload and start the timer
+        return ()=>{
+            clearInterval(value);
+        }
+    },[isActive,isPaused])
+
+    const handleResetClick = () => {
+        setIsActive(false)
+        setTimer(0)
+    }
+    const handlePauseClick = () => {
+        setIsActive(true)
+        setIsPaused(!isPaused);
+    }
+    const handleStartClick = () => {
+        setIsActive(true) // this will active -> active btns means another set of btns will be shown in UI
+        setIsPaused(false)
+    }
+
+    //When clicked start btn, another page reload and start the timer : wrong concept
+    //When clicked switch to another set of buttons using if-else
     return <>
         <div>
-            <Body id="container">
+            <div id="container">
                 <FormatTime timer={timer} />
-                <Button onclick={()=>{}} className={"bg-red-500"} btn={"Start"} />
-            </Body>
+                <ControlButton isActive={isActive} isPaused={isPaused} handleStartClick={handleStartClick} handlePauseClick={handlePauseClick} handleResetClick={handleResetClick} />
+            </div>
         </div>
 
     </>
 }
 
-function Button({ btn, className , onclick}) {
-    return <button onClick={onclick} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded ${className}`}>
-        {btn}
-    </button>
-}
 
-// Format the time as "hh:mm:ss"
-const FormatTime = ({ timer }) => {
-    const hour = Math.floor(timer / 3600)
-    const minutes = Math.floor(timer / 60);
-    const seconds = timer % 60;
-    return `${String(hour).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-};
+
