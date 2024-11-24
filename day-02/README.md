@@ -1,8 +1,22 @@
-# React + Vite
+# Stopwatch App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, responsive stopwatch built using **React** and **Tailwind CSS**. This project allows users to start, pause, and restart the stopwatch with an intuitive user interface.
 
-Currently, two official plugins are available:
+## Features
+- **Start**: Start the stopwatch with a single click.
+- **Pause/Resume**: Pause the stopwatch and resume it without resetting the timer.
+- **Reset**: Reset the stopwatch to 00:00:00 when the timer is stopped.
+- **Responsive Design**: Designed using Tailwind CSS for a sleek and responsive UI on both desktop and mobile devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- **React**: JavaScript library for building user interfaces.
+- **Tailwind CSS**: Utility-first CSS framework for styling the app.
+- **JavaScript**: For logic and state management.
+
+## Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/Eliminator746/React_Project.git
+cd day-02
