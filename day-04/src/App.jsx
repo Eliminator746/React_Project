@@ -1,16 +1,11 @@
 import './App.css'
-import MovieCard from './components/MovieCard'
+import Home from './pages/Home'
 
 function App() {
 
-  const movie= {
-    title : "Spiderman", 
-    img : "https://picsum.photos/200/300",
-    release_date : "20-12-2024"
-  }
   return (
     <>
-      <MovieCard movie={movie}/>
+      <Home />
     </>
   )
 }
