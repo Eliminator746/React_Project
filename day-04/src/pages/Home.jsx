@@ -1,21 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MovieCard from "../components/MovieCard"
 import '../css/Home.css'
+import { getPopularMovie } from '../services/api';
 
 export default function Home() {
 
-  const movie = [{
-    id: 1,
-    title: "Spiderman",
-    img: "https://picsum.photos/200/300",
-    release_date: "20-12-2024"
-  },
-  {
-    id: 2,
-    title: "Batman",
-    img: "https://picsum.photos/200/300",
-    release_date: "20-12-2024"
-  }]
+
+  const [movie, setMovie] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+
+    const renderMovie = async () => {
+      try {
+        const data = await getPopularMovie();
+        console.log(data);
+
+        setMovie(data)
+        // We are using movie as variable below, so we set movie 
+
+      } catch (err) {
+        console.log(err);
+        setError("This is an error in loading movies")
+
+      } finally {
+        setLoading(false)
+
+      }
+    }
+
+    renderMovie();
+  }, [])
 
   const [searchQuery, setSearchQuery] = useState("") // This state persists until you reload the page. After reloading of page, state variable to initial value again
   function handleSubmit(e) {
@@ -35,13 +51,20 @@ export default function Home() {
 
     </form>
 
-    {/* Filtering */}
-    <div className="movie-grid">
-      {movie.map((movieItems) => movieItems.title.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-        <MovieCard movie={movieItems} key={movieItems.id} />)}
-    </div>
+    {error && <div>{error}</div>}
+
+    {/* Data loaded from backend : Show all popular movies Else : Show Loading*/}
+    {loading ? (
+      <div className="loading">Loading...</div>
+    ) : (
+      <div className="movies-grid">
+        {movie.map((movieItem) => (
+          <MovieCard movie={movieItem} key={movieItem.id} />
+        ))}
+      </div>
+    )}
+
   </div>
 
-  
 
 }
