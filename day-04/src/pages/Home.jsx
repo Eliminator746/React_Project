@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import MovieCard from "../components/MovieCard"
 import '../css/Home.css'
-import { getPopularMovie } from '../services/API';
 
 export default function Home() {
 
-  const movie = getPopularMovie();
+  const movie = [{
+    id: 1,
+    title: "Spiderman",
+    img: "https://picsum.photos/200/300",
+    release_date: "20-12-2024"
+  },
+  {
+    id: 2,
+    title: "Batman",
+    img: "https://picsum.photos/200/300",
+    release_date: "20-12-2024"
+  }]
 
   const [searchQuery, setSearchQuery] = useState("") // This state persists until you reload the page. After reloading of page, state variable to initial value again
   function handleSubmit(e) {
