@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MovieCard from "../components/MovieCard"
 import '../css/Home.css'
-import { getPopularMovie } from '../services/api';
+import { getPopularMovie, searchMovies } from '../services/api';
 
 export default function Home() {
 
@@ -33,18 +33,44 @@ export default function Home() {
     renderMovie();
   }, [])
 
+
+  // Searching Movie Logic
   const [searchQuery, setSearchQuery] = useState("") // This state persists until you reload the page. After reloading of page, state variable to initial value again
-  function handleSubmit(e) {
+  async function handleSearch(e) {
 
-    e.preventDefault();  // Prevents default form behavior (page reload)
+    // Prevents default form behavior (page reload)
+    e.preventDefault();  
 
-    alert(searchQuery)
+    // Check if user adding spaces only. We do nothing for this.
+    if(!searchQuery.trim()) return;
+
+    // This makes sure if engine is searching for movie already, don't let another search begin
+    if(loading) return
+    setLoading(true)
+
+    try{
+
+      const matchingMovie = await searchMovies(searchQuery);
+      setMovie(matchingMovie)
+      
+      // If ant error came earlier, clear it 
+      setError(null)
+
+    }catch(err){
+
+      console.log(err);
+      setError("Error while searching ")
+    }finally{
+      
+      setLoading(false)
+    }
+    
   }
 
   return <div className='home'>
 
 
-    <form onSubmit={handleSubmit} className='search-form'>
+    <form onSubmit={handleSearch} className='search-form'>
 
       <input type="text" placeholder='Search Movie...' className='search-input' value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       <button className='search-button' type='submit'>Search</button>
