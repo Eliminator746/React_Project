@@ -8,10 +8,10 @@ function NutritionList({nutritionData}) {
     const {name, calories , protein, carbs ,fat, quantity} = nutritionData;
     return <>
 
-        <div className='border rounded-md bg-gray-100 p-3 shadow-lg border-blue-500 space-y-3'>
-            <h1 className='text-2xl font-semibold'>{name}</h1>
+        <div className='border rounded-md bg-gray-100 p-3 shadow-lg border-blue-500 space-y-3  sm:p-5 md:p-6'>
+            <h1 className='text-2xl font-semibold  sm:text-2xl'>{name}</h1>
 
-            <ul className='font-normal'>
+            <ul className='font-normal sm:text-base'>
                 <li>Calories : {calories}</li>
                 <li>Protein : {protein}g</li>
                 <li>Carbs : {carbs}g</li>
@@ -34,11 +34,11 @@ function NutritionList({nutritionData}) {
 
 function IncDecBtn({quantity}) {
 
-    return <div className='flex items-center gap-x-1'>
+    return <div className='flex items-center gap-x-1  sm:gap-x-3 md:gap-x-4'>
 
-        <button className='incdecbtn bg-green-500'>+</button>
+        <button className='incdecbtn bg-green-500  sm:text-base'>+</button>
         <p>{quantity}</p>
-        <button className='incdecbtn bg-red-500'>-</button>
+        <button className='incdecbtn bg-red-500  sm:text-base'>-</button>
     </div>
 }
 

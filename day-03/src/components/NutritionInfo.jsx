@@ -20,7 +20,7 @@ function NutritionInfo() {
         return;
     })
     return (
-        <div className='text-center font-semibold mt-7 space-y-1' >
+        <div className='text-center font-semibold mt-5 space-y-1' >
 
             <div>Total Calories : {totalCalories}  <span>
               <FontAwesomeIcon icon={faUtensils} size="lg" className='text-blue-500' />
