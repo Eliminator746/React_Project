@@ -1,13 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEdit,
-  faTrashAlt,
-  faUtensils,
-  faPlus,
-  faMinus,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import '../css/NutritionInput.css'
 
 function NutritionList({nutritionData}) {

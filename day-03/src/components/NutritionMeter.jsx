@@ -1,6 +1,7 @@
 import React from 'react'
 import NutritionInput from './NutritionInput'
 import NutritionCard from './NutritionCard'
+import NutritionInfo from './NutritionInfo'
 
 export default function NutritionMeter() {
   return <div className='w-full'>
@@ -8,6 +9,7 @@ export default function NutritionMeter() {
     <div className='px-3'>
       <NutritionInput />
       <NutritionCard />
+      <NutritionInfo />
     </div>
   </div>
 }
