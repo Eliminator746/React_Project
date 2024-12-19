@@ -17,7 +17,7 @@ export default function Home() {
         const data = await getPopularMovie();
         console.log(data);
 
-        setMovie(data)
+        setMovie(data) 
         // We are using movie as variable below, so we set movie 
 
       } catch (err) {
