@@ -38,7 +38,7 @@ export const MovieProvider=({children})=>{
         setFavourite((prev)=>prev.filter((movie)=> movieId !== movie.id))
     }
 
-    // Is Favourite
+    // Check if it Is Favourite
     const isFavourite= (movieId) => {
 
         return favourite.some(movie=>movie.id === movieId)
@@ -50,7 +50,6 @@ export const MovieProvider=({children})=>{
         isFavourite,
         favourite
     }
-    // Check if this is fav
 
     return <MovieContext.Provider value={value}>
             {children}
