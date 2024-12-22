@@ -22,7 +22,19 @@ export const GlobalProvider = ({ children }) => {
             id: nextId.current++, 
             quantity: 1 // Default quantity
         };
-        
+          // Validate that no input field is empty
+          if (
+            !(
+                nutritionalProfile.name &&
+                nutritionalProfile.calories > 0 &&
+                nutritionalProfile.protein > 0 &&
+                nutritionalProfile.carbs > 0 &&
+                nutritionalProfile.fat > 0
+            )
+        ) {
+            alert('Please fill in all fields with valid values!');
+            return; // Do not dispatch the action if validation fails
+        }
         dispatch({
             type: 'added',
             singleObj: itemWithIdAndQuantity
