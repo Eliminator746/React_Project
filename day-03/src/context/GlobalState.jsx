@@ -55,6 +55,15 @@ export const GlobalProvider = ({ children }) => {
             payload : id
         })
     }
+
+    function updateItem(id, editedData){
+
+        dispatch({
+            type : 'updateItem',
+            id,
+            editedData
+        })
+    }
     
     return (
         <GlobalContext.Provider value={{
@@ -62,6 +71,7 @@ export const GlobalProvider = ({ children }) => {
             handleAddItem,
             handleClear,
             removeItem,
+            updateItem
         }}>
             {children}
         </GlobalContext.Provider>

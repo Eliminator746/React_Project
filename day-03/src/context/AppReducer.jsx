@@ -16,6 +16,16 @@ export default (state, action) => {
         case 'removeItem' : {
             return state.filter((items)=> items.id !== action.payload)
         }
+
+        case 'updateItem':{
+            return state.map((item) => {
+                if (item.id === action.id) {
+                    // Return the updated item with the new data
+                    return { ...item, ...action.editedData };
+                }
+                return item; // Return the unchanged item
+            });
+        }
             
 
         default:
