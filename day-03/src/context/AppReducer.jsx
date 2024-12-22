@@ -9,6 +9,13 @@ export default (state, action) => {
                 action.singleObj               
             ];
         }
+        case 'clearAll' : {
+            return []
+        }
+
+        case 'removeItem' : {
+            return state.filter((items)=> items.id !== action.payload)
+        }
             
 
         default:

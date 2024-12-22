@@ -40,11 +40,28 @@ export const GlobalProvider = ({ children }) => {
             singleObj: itemWithIdAndQuantity
         })
     }
+
+    function handleClear(){
+
+        dispatch({
+            type : 'clearAll',
+        })
+    }
+
+    function removeItem(id){
+
+        dispatch({
+            type : 'removeItem',
+            payload : id
+        })
+    }
     
     return (
         <GlobalContext.Provider value={{
             nutritionData: state,
             handleAddItem,
+            handleClear,
+            removeItem,
         }}>
             {children}
         </GlobalContext.Provider>

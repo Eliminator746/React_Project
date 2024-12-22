@@ -3,7 +3,7 @@ import '../css/NutritionInput.css'
 import { GlobalContext } from '../context/GlobalState'
 
 function NutritionInput() {
-    const { nutritionData , handleAddItem } = useContext(GlobalContext);
+    const { nutritionData , handleAddItem , handleClear} = useContext(GlobalContext);
 
     const [nutritionalProfile, setNutritionalProfile] = useState({
         name: '',
@@ -33,7 +33,7 @@ function NutritionInput() {
             <input type="number" name='fat' placeholder='Fat (g)' value={nutritionData.fat} onChange={handleChange} className='grid-Items' />
             <div></div>
             <ButtonComponent btn="Add Items" onClick={() => handleAddItem(nutritionalProfile)} color="bg-green-500 hover:bg-blue-600" />
-            <ButtonComponent btn="Clear All" color="bg-red-500 hover:bg-pink-600" />
+            <ButtonComponent btn="Clear All" onClick={() => handleClear()} color="bg-red-500 hover:bg-pink-600" />
         </div>
 
     </div>
