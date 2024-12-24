@@ -7,5 +7,13 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.navbar-item': {
+          '@apply hover:text-blue-300 cursor-pointer transition duration-200 ease-in-out hover:scale-110': {},
+        },
+      })
+    },
+  ],
 }
