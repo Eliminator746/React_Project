@@ -26,6 +26,24 @@ export default (state, action) => {
                 return item; // Return the unchanged item
             });
         }
+        
+        case 'increment' :{
+            
+            return state.map((item)=>{
+                if(item.id === action.id){
+                    return {...item, quantity : item.quantity + 1 }
+                }else   
+                    return item;
+            })
+        }
+        case 'decrement' :{
+            return state.map((item)=>{
+                if(item.id === action.id && item.quantity > 0){
+                    return {...item, quantity : item.quantity - 1 }
+                }else   
+                    return item;
+            })
+        }
             
 
         default:

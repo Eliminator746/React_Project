@@ -15,11 +15,19 @@ function NutritionInput() {
 
     // Handle input changes and update the nutritionalProfile state
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setNutritionalProfile((prevState) => ({
-            ...prevState,
-            [name]: value
-        }));
+        const { name, value ,type} = e.target;
+        if(type==="text"){
+            setNutritionalProfile((prevState) => ({
+                ...prevState,
+                [name]: value
+            }));
+        }else{
+            setNutritionalProfile((prevState) => ({
+                ...prevState,
+                [name]: Number(value)
+            }));
+        }
+       
     };
 
 

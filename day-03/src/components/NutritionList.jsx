@@ -57,7 +57,7 @@ function NutritionList({ nutritionData }) {
                             className="w-full px-2 py-1 border rounded-md"
                         />
                     ) : (
-                        calories
+                        (calories * quantity).toFixed(2)
                     )}
                 </li>
                 <li>
@@ -70,7 +70,7 @@ function NutritionList({ nutritionData }) {
                             className="w-full px-2 py-1 border rounded-md"
                         />
                     ) : (
-                        `${protein}g`
+                        `${(protein * quantity).toFixed(2)}g`
                     )}
                 </li>
                 <li>
@@ -83,7 +83,7 @@ function NutritionList({ nutritionData }) {
                             className="w-full px-2 py-1 border rounded-md"
                         />
                     ) : (
-                        `${carbs}g`
+                        `${(carbs * quantity).toFixed(2)}g`
                     )}
                 </li>
                 <li>
@@ -96,12 +96,12 @@ function NutritionList({ nutritionData }) {
                             className="w-full px-2 py-1 border rounded-md"
                         />
                     ) : (
-                        `${fat}g`
+                        `${(fat * quantity).toFixed(2)}g`
                     )}
                 </li>
             </ul>
 
-            <IncDecBtn quantity={quantity} />
+            <IncDecBtn quantity={quantity} id={id} />
             <div className='flex gap-2 pb-2' >
                 {isEditing ?
                     <button className='editdeletebtn bg-blue-500' onClick={() =>{  updateItem(id, editedData); setIsEditing(false)}}>
@@ -121,13 +121,15 @@ function NutritionList({ nutritionData }) {
     </>
 }
 
-function IncDecBtn({ quantity }) {
+function IncDecBtn({ quantity ,id }) {
+
+    const { handleInc , handleDec} = useContext(GlobalContext)
 
     return <div className='flex items-center gap-x-1  sm:gap-x-3 md:gap-x-4'>
 
-        <button className='incdecbtn bg-green-500  sm:text-base'>+</button>
+        <button className='incdecbtn bg-green-500  sm:text-base' onClick={()=>{ handleInc(id) }}>+</button>
         <p>{quantity}</p>
-        <button className='incdecbtn bg-red-500  sm:text-base'>-</button>
+        <button className='incdecbtn bg-red-500  sm:text-base' onClick={()=>{ handleDec(id) }}>-</button>
     </div>
 }
 

@@ -65,13 +65,30 @@ export const GlobalProvider = ({ children }) => {
         })
     }
     
+    function handleInc(id){
+
+        dispatch({
+            type : "increment",
+            id
+        })
+    }
+    function handleDec(id){
+
+        dispatch({
+            type : "decrement",
+            id
+        })
+    }
+    
     return (
         <GlobalContext.Provider value={{
             nutritionData: state,
             handleAddItem,
             handleClear,
             removeItem,
-            updateItem
+            updateItem,
+            handleInc,
+            handleDec
         }}>
             {children}
         </GlobalContext.Provider>

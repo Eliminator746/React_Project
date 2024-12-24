@@ -13,21 +13,23 @@ function NutritionInfo() {
     let totalFat=0;
 
     nutritionData.map((items)=>{
-        totalCalories +=items.calories;
-        totalProtein +=items.protein;
-        totalCarbs +=items.carbs;
-        totalFat +=items.fat;
+        totalCalories +=items.calories*items.quantity;
+        totalProtein +=items.protein*items.quantity;
+        totalCarbs +=items.carbs*items.quantity;
+        totalFat +=items.fat*items.quantity;
         return;
     })
+    console.log(nutritionData);
+    
     return (
         <div className='text-center font-semibold mt-5 space-y-1' >
 
-            <div>Total Calories : {totalCalories}  <span>
+            <div>Total Calories : {totalCalories.toFixed(2)}  <span>
               <FontAwesomeIcon icon={faUtensils} size="lg" className='text-blue-500' />
             </span> </div>
-            <div>Total Protein : {totalProtein}g </div>
-            <div>Total Carbs : {totalCarbs}g </div>
-            <div>Total Fat : {totalFat}g </div>
+            <div>Total Protein : {totalProtein.toFixed(2)}g </div>
+            <div>Total Carbs : {totalCarbs.toFixed(2)}g </div>
+            <div>Total Fat : {totalFat.toFixed(2)}g </div>
 
         </div>
     )
