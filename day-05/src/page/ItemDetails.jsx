@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function ItemDetails() {
 
@@ -8,8 +8,16 @@ function ItemDetails() {
 
     const { image, name, price } = location.state;
 
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-gray-50 pt-[6rem]">
+    return <div className='bg-gray-100 min-h-screen'>
+        <div className="relative p-6">
+            <Link to="/">
+                <p className="absolute top-10 left-6 text-pink-600 font-semibold text-lg flex items-center gap-2">
+                    <span className="text-xl">←</span> Back
+                </p>
+            </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 pt-[6rem]">
             <img
                 src={`../../public/${image}`}
                 alt={image}
@@ -28,7 +36,7 @@ function ItemDetails() {
                         <option value="L">Select size (L)</option>
                         <option value="XL">Select size (XL)</option>
                     </select>
-                    <button className="bg-pink-600 text-white py-2 px-4 rounded-md hover:bg-pink-700 transition duration-300">Add To Bag</button>
+                    <button className="bg-pink-600 text-white py-2 px-4 rounded-md hover:bg-pink-700 transition duration-300"> <Link to="/cart">Add To Bag</Link> </button>
                 </div>
 
                 <p className="text-sm text-gray-600 leading-relaxed mt-6">
@@ -36,7 +44,7 @@ function ItemDetails() {
                 </p>
             </div>
         </div>
-    );
+    </div>;
 }
 
 
