@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
+
+  const navigate=useNavigate();
   return (
     <div className='sticky top-0 z-10 flex justify-between items-center py-4 px-6 bg-white bg-opacity-80 backdrop-blur-md text-gray-800 shadow-lg'>
         <h1 className='font-bold text-2xl tracking-wider cursor-pointer transition duration-100 ease-in-out hover:scale-110'><Link to={"/"}>Shoppin</Link></h1>
@@ -11,7 +13,7 @@ function Navbar() {
             <li className='navbar-item'>Mens</li>
             <li className='navbar-item'>Clothing</li>
             <li className='navbar-item'>Brand</li>
-            <li className='navbar-item'>Cart(0)</li>
+            <li className='navbar-item' onClick={()=>{navigate("/cart")}}>Cart(0)</li>
             <li className='navbar-item'>Order</li>
             <li>
                 <button className='px-4 py-2 bg-red-700 hover:bg-orange-600 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-300'>

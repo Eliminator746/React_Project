@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CartCard from '../components/CartCard';
 
 function Cart() {
   // As addtobag item is clicked, multiple items will be loaded in local storage, so we need arr. to handle it
-  const [items, setItems] = useState([]); 
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     const storedItems = JSON.parse(localStorage.getItem("bagItem"));
-    if (storedItems && Array.isArray(storedItems)) {
+    if (storedItems) {
       setItems(storedItems);
     }
   }, []);
@@ -33,25 +34,10 @@ function Cart() {
   return (
     <div className="bg-gray-100 min-h-screen py-10">
       <div className="max-w-4xl mx-auto px-6">
-        {items.map((item, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg p-6 mb-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-start space-x-4">
-                <img
-                  src={`../public/${item.image}`}
-                  alt={item.name}
-                  className="w-24 h-24 object-cover rounded-md"
-                />
-                <div className="flex flex-col">
-                  <h2 className="text-xl font-semibold text-gray-800">{item.name}</h2>
-                  <p className="text-lg text-gray-600">{`Price: $${item.price}`}</p>
-                  <p className="text-sm text-gray-500">Expected Delivery: 3-6 days</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        {items.map((item) => (
+         <CartCard item={item}/>
         ))}
-        
+
         {/* Proceed to Checkout Button */}
         <div className="bg-white rounded-lg shadow-lg p-6 mt-6">
           <div className="flex justify-between items-center">
