@@ -1,12 +1,29 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function ItemDetails() {
 
     const location = useLocation();
-    console.log(location.state);
-
     const { image, name, price } = location.state;
+
+    const navigate = useNavigate();
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const storedItem = JSON.parse(localStorage.getItem("bagItem"));
+        if (storedItem) {
+            setItems(storedItem);
+        }
+    }, [])
+
+    function handleBag() {
+        setItems((prevItems) => {
+            const updatedItems = [...prevItems, location.state];
+            localStorage.setItem("bagItem", JSON.stringify(updatedItems));
+            return updatedItems;
+        });
+        navigate('/cart');
+    }
 
     return <div className='bg-gray-100 min-h-screen'>
         <div className="relative p-6">
@@ -36,7 +53,7 @@ function ItemDetails() {
                         <option value="L">Select size (L)</option>
                         <option value="XL">Select size (XL)</option>
                     </select>
-                    <button className="bg-pink-600 text-white py-2 px-4 rounded-md hover:bg-pink-700 transition duration-300"> <Link to="/cart">Add To Bag</Link> </button>
+                    <button className="bg-pink-600 text-white py-2 px-4 rounded-md hover:bg-pink-700 transition duration-300" onClick={handleBag}>Add To Bag</button>
                 </div>
 
                 <p className="text-sm text-gray-600 leading-relaxed mt-6">

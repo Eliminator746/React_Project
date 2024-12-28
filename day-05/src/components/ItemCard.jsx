@@ -1,20 +1,20 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function ItemCard({itemResources}) {
-    
-    const {image ,name, brand, price, rating}=itemResources;
+function ItemCard({ itemResources }) {
 
-    const navigate=useNavigate();
+    const { image, name, brand, price, rating } = itemResources;
 
-        function handleCardClick(){
-            navigate('/itemDetails',{
-                state : { image,name,price }
-            })
-        }
+    const navigate = useNavigate();
+
+    function handleCardClick() {
+        navigate('/itemDetails', {
+            state: { image, name, price }
+        })
+    }
     return <>
-        <div  onClick={handleCardClick} className="max-w-xs rounded overflow-hidden shadow-lg">
-            <img className="w-full h-80 object-cover"  src={`../../public/${image}`} alt={image}  />
+        <div onClick={handleCardClick} className="max-w-xs rounded overflow-hidden shadow-lg">
+            <img className="w-full h-80 object-cover" src={`../../public/${image}`} alt={image} />
             <div className="px-6 py-4 text-center">
                 <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
                 <div className='space-y-1'>

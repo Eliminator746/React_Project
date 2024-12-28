@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
     <div className='sticky top-0 z-10 flex justify-between items-center py-4 px-6 bg-white bg-opacity-80 backdrop-blur-md text-gray-800 shadow-lg'>
-        <h1 className='font-bold text-2xl tracking-wider cursor-pointer transition duration-100 ease-in-out hover:scale-110'>Shoppin</h1>
+        <h1 className='font-bold text-2xl tracking-wider cursor-pointer transition duration-100 ease-in-out hover:scale-110'><Link to={"/"}>Shoppin</Link></h1>
         
         <ul className='flex space-x-6 items-center'>
             <li className='navbar-item'>Womens</li>
